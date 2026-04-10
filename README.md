@@ -3,7 +3,7 @@
 A comprehensive Tampermonkey script designed to significantly improve the developer experience within the Form.io Designer and Portal environments. It adds critical missing features like component folding, a structural mini-map, and a live developer overview panel.
 
 > [!NOTE]
-> This script is verified to work with **Form.io Portal version 9.x**. Compatibility with older versions is currently untested.
+> This script is verified to work with **Form IO Portal version 9.x**. Compatibility with older versions is currently untested.
 
 ## 🚀 Key Features
 
@@ -42,4 +42,8 @@ Replaces the basic textareas in Form.io settings with the powerful ACE Editor.
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension for your browser.
 2. Create a new script in Tampermonkey.
 3. Copy the contents of `formio-portal-ui-enhancer.user.js` into the editor.
-4. Save and refresh your Form IO portal page.
+4. **Configure Match Rules**: Update the `@match` section in the script header to include your organization's specific Form IO portal URLs.
+5. Save and refresh your Form IO portal page.
+
+> [!IMPORTANT]
+> By default, the script only matches `portal.form.io` and `next.form.io`. If you use a self-hosted or branded version of the Form IO portal, you **must** add your domain to the Tampermonkey script header for it to activate.
