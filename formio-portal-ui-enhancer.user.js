@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         Form IO Portal UI Enhancer
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @author       xjia@lighthousehq
 // @description  Form IO Designer UI Improvement (Verified for Portal 9.x; older versions untested)
 // @match        *://portal.form.io/*
-// @match        *://next.form.io/*
 // @grant        none
 // ==/UserScript==
 
@@ -31,8 +30,8 @@
       linkSelector: 'a[href]'
     },
     selectors: {
-      formarea: '.formarea',
-      foldable: '.formio-component-container, .formio-component-fieldset, .formio-component-fieldSet, .formio-component-well, .formio-component-panel'
+      formarea: '.formarea, .formio-builder-form',
+      foldable: '.formio-component-container, .formio-component-fieldset, .formio-component-fieldSet, .formio-component-well, .formio-component-panel, .formio-component-columns'
     }
   };
 
@@ -48,34 +47,44 @@
     }
 
     /* Foldable */
-    .formarea .formio-component-container.formio-folded > :not(label):not(.component-btn-group),
-    .formarea .formio-component-fieldset.formio-folded > fieldset > :not(legend),
-    .formarea .formio-component-fieldSet.formio-folded > fieldset > :not(legend),
-    .formarea .formio-component-panel.formio-folded > .panel-body,
-    .formarea .formio-component-well.formio-folded > :not(.component-btn-group),
-    .formarea .formio-component-fieldset.formio-folded > :not(fieldset):not(.component-btn-group),
-    .formarea .formio-component-fieldSet.formio-folded > :not(fieldset):not(.component-btn-group) { display: none !important; }
+    :is(.formarea, .formio-builder-form) .formio-component-container.formio-folded > :not(label):not(.component-btn-group),
+    :is(.formarea, .formio-builder-form) .formio-component-columns.formio-folded > :not(label):not(.component-btn-group),
+    :is(.formarea, .formio-builder-form) .formio-component-fieldset.formio-folded > fieldset > :not(legend),
+    :is(.formarea, .formio-builder-form) .formio-component-fieldSet.formio-folded > fieldset > :not(legend),
+    :is(.formarea, .formio-builder-form) .formio-component-panel.formio-folded .panel-body,
+    :is(.formarea, .formio-builder-form) .formio-component-well.formio-folded > :not(.component-btn-group),
+    :is(.formarea, .formio-builder-form) .formio-component-fieldset.formio-folded > :not(fieldset):not(.component-btn-group),
+    :is(.formarea, .formio-builder-form) .formio-component-fieldSet.formio-folded > :not(fieldset):not(.component-btn-group) { display: none !important; }
 
-    .formarea .formio-component-container > label[ref="label"],
-    .formarea .formio-component-fieldset > fieldset > legend[ref="header"],
-    .formarea .formio-component-fieldSet > fieldset > legend[ref="header"],
-    .formarea .formio-component-panel .panel-title,
-    .formarea .formio-component-well > label[ref="label"] {
-      cursor: pointer !important; user-select: none; position: relative; padding-left: 20px !important;
+    :is(.formarea, .formio-builder-form) .formio-component-container > label[ref="label"],
+    :is(.formarea, .formio-builder-form) .formio-component-columns > label[ref="label"],
+    :is(.formarea, .formio-builder-form) label[ref="label"].formio-injected-header,
+    :is(.formarea, .formio-builder-form) .formio-component-fieldset > fieldset > legend[ref="header"],
+    :is(.formarea, .formio-builder-form) .formio-component-fieldSet > fieldset > legend[ref="header"],
+    :is(.formarea, .formio-builder-form) .formio-component-panel .panel-heading,
+    :is(.formarea, .formio-builder-form) .formio-component-well > label[ref="label"] {
+      cursor: pointer !important; user-select: none; position: relative; padding-left: 30px !important;
     }
+    :is(.formarea, .formio-builder-form) .formio-component-panel .panel-heading { padding-left: 35px !important; }
 
-    .formarea .formio-component-container > label[ref="label"]::before,
-    .formarea .formio-component-fieldset > fieldset > legend[ref="header"]::before,
-    .formarea .formio-component-panel .panel-title::before,
-    .formarea .formio-component-well > label[ref="label"]::before {
-      content: '▼'; position: absolute; left: 0; top: 0; font-size: 10px; color: var(--dev-accent); transition: transform 0.2s;
+    :is(.formarea, .formio-builder-form) .formio-component-container > label[ref="label"]::before,
+    :is(.formarea, .formio-builder-form) .formio-component-columns > label[ref="label"]::before,
+    :is(.formarea, .formio-builder-form) label[ref="label"].formio-injected-header::before,
+    :is(.formarea, .formio-builder-form) .formio-component-fieldset > fieldset > legend[ref="header"]::before,
+    :is(.formarea, .formio-builder-form) .formio-component-panel .panel-heading::before,
+    :is(.formarea, .formio-builder-form) .formio-component-well > label[ref="label"]::before {
+      content: '▼'; position: absolute; left: 10px; top: 0; font-size: 10px; color: var(--dev-accent); transition: transform 0.2s;
     }
+    /* Align icon for panels which usually have more padding */
+    :is(.formarea, .formio-builder-form) .formio-component-panel .panel-heading::before { top: 12px; left: 12px; }
 
-    .formarea [class*="formio-component-"].formio-folded label[ref="label"]::before,
-    .formarea [class*="formio-component-"].formio-folded legend[ref="header"]::before,
-    .formarea [class*="formio-component-"].formio-folded .panel-title::before { content: '▶'; }
 
-    .formarea .formio-folded { border: 1px dashed var(--dev-accent) !important; background: rgba(0, 123, 255, 0.02) !important; padding-bottom: 5px !important; min-height: auto !important; }
+    :is(.formarea, .formio-builder-form) [class*="formio-component-"].formio-folded label[ref="label"]::before,
+    :is(.formarea, .formio-builder-form) label.formio-injected-header:has(+ .formio-folded)::before,
+    :is(.formarea, .formio-builder-form) [class*="formio-component-"].formio-folded legend[ref="header"]::before,
+    :is(.formarea, .formio-builder-form) [class*="formio-component-"].formio-folded .panel-heading::before { content: '▶'; }
+
+    :is(.formarea, .formio-builder-form) .formio-folded { border: 1px dashed var(--dev-accent) !important; background: rgba(0, 123, 255, 0.02) !important; padding-bottom: 5px !important; min-height: auto !important; }
     .formio-injected-header { color: #999 !important; font-style: italic !important; font-weight: normal !important; opacity: 0.8; font-size: 0.9em !important; }
 
     /* Portal & Map */
@@ -156,6 +165,56 @@
         clearTimeout(timeout);
         timeout = setTimeout(() => fn(...args), delay);
       };
+    },
+    getComponentType(comp) {
+      if (comp.querySelector(':scope > fieldset')) return 'fieldset';
+      if (comp.querySelector(':scope > .panel')) return 'panel';
+
+      const cls = comp.className.toLowerCase();
+      if (cls.includes('fieldset')) return 'fieldset';
+      if (cls.includes('container')) return 'container';
+      if (cls.includes('columns')) return 'column';
+      if (cls.includes('panel')) return 'panel';
+      if (cls.includes('well')) return 'well';
+
+      const match = cls.match(/formio-component-([a-z0-9_-]+)/i);
+      return (match && match[1]) ? match[1].toLowerCase() : 'component';
+    },
+    getComponentKey(comp) {
+      const classes = comp.className.split(/\s+/);
+      const prefix = 'formio-component-';
+      // Filter for formio-component-{name} classes, excluding utility classes
+      const matches = classes.filter(c => {
+        if (!c.startsWith(prefix) || c === 'formio-component') return false;
+        const name = c.substring(prefix.length).toLowerCase();
+        return !['label-hidden', 'multiple', 'label-inline', 'label-right', 'label-left'].includes(name);
+      });
+
+      if (matches.length >= 2) {
+        // As per the rule: former is type, latter is key
+        return matches[1].substring(prefix.length);
+      }
+      return matches.length > 0 ? matches[0].substring(prefix.length) : 'component';
+    },
+
+    getOwnHeader(comp, includeInjected = true) {
+      if (!comp) return null;
+      return Array.from(comp.querySelectorAll('label[ref="label"], legend[ref="header"], .panel-title, .panel-heading'))
+        .find(h => {
+          const isScoped = h.closest('[class*="formio-component-"]') === comp;
+          if (!isScoped) return false;
+          return includeInjected || !h.classList.contains('formio-injected-header');
+        });
+    },
+
+    getComponentTitle(comp) {
+      const type = this.getComponentType(comp);
+      const key = this.getComponentKey(comp);
+      // Columns and Wells: always use Key as per requirement
+      if (type === 'column' || type === 'well') return `{${key}}`;
+      // Others: Use native header if found, otherwise the key
+      const native = this.getOwnHeader(comp, false);
+      return native ? native.innerText.trim().split('\n')[0] : `{${key}}`;
     }
   };
 
@@ -331,15 +390,29 @@
     bindEvents() {
       document.addEventListener('click', (e) => {
         const target = e.target;
+
+        // Handle external injected labels (special case for columns)
+        if (target.classList.contains('formio-injected-header') && target.tagName === 'LABEL') {
+          const next = target.nextElementSibling;
+          if (next && next.classList.contains('formio-component-columns')) {
+            next.classList.toggle('formio-folded');
+            return;
+          }
+        }
+
         const comp = target.closest(CONFIG.selectors.foldable);
         if (!comp || !comp.closest(CONFIG.selectors.formarea)) return;
 
         // Ignore simple inputs
         if (comp.classList.contains('formio-component-radio') || comp.classList.contains('formio-component-checkbox')) return;
 
-        const header = comp.querySelector('label[ref="label"], legend[ref="header"], .panel-title');
+        const header = comp.querySelector('label[ref="label"], legend[ref="header"], .panel-title, .panel-heading');
         if (header && (header === target || header.contains(target))) {
-          if (['INPUT', 'A', 'BUTTON'].includes(target.tagName)) return;
+          // Ignore clicks on interactive elements (buttons, links, form inputs)
+          if (target.closest('button, a, input, select, textarea, [role="button"]') && target !== header && !header.contains(target)) return;
+          // Specific check for FormIO settings buttons
+          if (target.closest('.component-btn-group')) return;
+
           comp.classList.toggle('formio-folded');
         }
       }, true);
@@ -352,22 +425,42 @@
       area.querySelectorAll(CONFIG.selectors.foldable).forEach(comp => {
         if (comp.classList.contains('formio-component-radio') || comp.classList.contains('formio-component-checkbox')) return;
 
+        const titleText = Utils.getComponentTitle(comp);
+        const type = Utils.getComponentType(comp);
+
+        // Update existing injected header text if key/type changed
+        const existingInjected = comp.querySelector('.formio-injected-header');
+        if (existingInjected && existingInjected.innerText !== titleText) {
+          existingInjected.innerText = titleText;
+        }
+
         const fs = comp.querySelector('fieldset');
         if (fs && !fs.querySelector('legend')) {
           const leg = document.createElement('legend');
           leg.setAttribute('ref', 'header');
           leg.className = 'formio-injected-header';
-          leg.innerText = '(not set)';
+          leg.innerText = titleText;
           fs.prepend(leg);
-        } else if (!comp.querySelector('label[ref="label"], legend[ref="header"], .panel-title')) {
+        } else if (!Utils.getOwnHeader(comp, false)) {
+          // Columns/Wells: don't inject if already labeled (sibling or direct)
+          const prev = comp.previousElementSibling;
+          if (prev?.classList.contains('formio-injected-header')) return;
+          if (type === 'column' && prev?.tagName === 'LABEL') return;
+
           const lab = document.createElement('label');
           lab.setAttribute('ref', 'label');
           lab.className = 'formio-injected-header col-form-label';
-          lab.innerText = '(not set)';
-          comp.prepend(lab);
+          lab.innerText = titleText;
+
+          if (type === 'column') {
+            comp.parentNode.insertBefore(lab, comp);
+          } else {
+            comp.prepend(lab);
+          }
         }
       });
     }
+
   };
 
 
@@ -389,12 +482,8 @@
 
       const components = Array.from(designer.querySelectorAll(CONFIG.selectors.foldable));
       const html = _.map(components, comp => {
-        const label = comp.querySelector('label[ref="label"], legend[ref="header"], .panel-title');
-        const title = (label?.innerText || 'Unnamed Component').trim().split('\n')[0];
-
-        let type = 'Comp';
-        const cls = comp.className.toLowerCase();
-        ['fieldset', 'container', 'panel', 'well'].forEach(t => { if (cls.includes(t)) type = _.capitalize(t); });
+        const type = _.capitalize(Utils.getComponentType(comp));
+        const title = Utils.getComponentTitle(comp);
 
         let depth = 0, p = comp.parentElement;
         while (p && p !== designer) { if (p.matches(CONFIG.selectors.foldable)) depth++; p = p.parentElement; }
@@ -508,10 +597,21 @@
       const forms = window.Formio.forms || {};
 
       let html = '';
+      const seenIds = new Set();
+      const currentUrl = window.location.href;
+
       _.forEach(forms, (inst, key) => {
-        if (!inst?._form?.title) return;
+        if (!inst?._form?.title || !inst?._form?._id) return;
 
         const f = inst._form;
+
+        // Discard forms not in URL (irrelevant forms)
+        if (!currentUrl.includes(f._id)) return;
+
+        // Discard duplicates sharing the same form._id
+        if (seenIds.has(f._id)) return;
+        seenIds.add(f._id);
+
         const sub = inst.submission || {};
         const data = inst.data || {};
 
