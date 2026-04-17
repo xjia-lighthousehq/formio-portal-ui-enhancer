@@ -12,19 +12,22 @@ A floating, modern UI panel that provides real-time information about the active
 - **Form Metadata**: Quickly see the Form Path, Name, and Environment Stage (UAT, Live, etc.).
 - **Live Data Inspection**: View and copy the `inst.data` and `submission` JSON objects with a single click.
 - **Copy to Clipboard**: Dedicated buttons to copy paths, IDs, and full JSON payloads.
+- **Form List Filtering**: Automatically filters out duplicate form instances and forms not belonging to the current page URL.
 - **State Persistence**: The panel remembers if it was minimized or expanded across page reloads.
 
 ### 🗺️ Form Structure Mini-Map
 Never get lost in complex nested forms again.
 - **Hierarchy Visualization**: A tree-like view of your form's structure (Containers, Fieldsets, Panels, Wells).
 - **Click-to-Navigate**: Clicking an item in the mini-map automatically scrolls the designer to that component and highlights it briefly.
+- **Key-Based Identifiers**: Displays component keys (e.g., `{firstName}`) when titles are missing, providing direct correlation to the form schema.
 - **Fold Status Sync**: Reflects the expanded/collapsed state of components in real-time.
 
 ### 📂 Component Folding (Designer)
 Clean up your workspace by collapsing large containers.
 - **Support for Structural Components**: Fold Containers, Fieldsets, Panels, and Wells.
-- **Intelligent Headers**: Automatically injects "(not set)" labels for components without a title so they can still be toggled.
-- **Safe Interaction**: Designed to ignore clicks on inputs and designer action buttons, preventing accidental folding during configuration.
+- **Robust Label Mapping**: Intelligently detects labels from fieldsets, legends, and even external sibling labels (common in Column components).
+- **Key Injection**: Automatically injects identifiers using component keys (e.g., `{dataGrid}`) for unlabeled containers, ensuring they remain toggleable.
+- **Safe Interaction**: Precision hit-box detection ignores clicks on settings buttons and nested inputs, preventing accidental folding while you work.
 
 ### 📝 Integrated ACE Editor
 Replaces the basic textareas in Form.io settings with the powerful ACE Editor.
