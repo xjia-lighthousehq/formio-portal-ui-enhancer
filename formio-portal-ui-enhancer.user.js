@@ -101,8 +101,8 @@
     #formio-dev-panel.minimized #formio-dev-panel-header h3 span, #formio-dev-panel.minimized #formio-dev-panel-header .toggle-icon { display: none; }
     #formio-dev-panel.minimized #formio-dev-panel-content { display: none; }
 
-    #formio-dev-panel-header { 
-      padding: 10px 16px; height: 42px; box-sizing: border-box; background: var(--dev-bg-header); 
+    #formio-dev-panel-header {
+      padding: 10px 16px; height: 42px; box-sizing: border-box; background: var(--dev-bg-header);
       border-bottom: 1px solid var(--dev-border); display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;
     }
     #formio-dev-panel-header h3 {
@@ -122,7 +122,7 @@
     .dev-detail-key { color: var(--dev-text-dim); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
     .dev-detail-val-container { display: flex; align-items: center; gap: 8px; background: rgba(15,23,42,0.5); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
     .dev-detail-val { flex-grow: 1; color: #cbd5e1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace; }
-    
+
     .map-item { transition: all 0.2s; text-decoration: none; display: flex; align-items: center; padding: 6px 12px; cursor: pointer; font-size: 11px; color: #cbd5e1; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
     .map-item:hover { background-color: rgba(56, 189, 248, 0.1); color: var(--dev-accent); }
     .map-item.folded { opacity: 0.4; font-style: italic; }
@@ -135,6 +135,191 @@
     .dev-json-view pre { margin: 0; color: #9cdcf1; white-space: pre-wrap; word-break: break-all; }
     .arrow-icon { transition: transform 0.3s; font-size: 10px; opacity: 0.5; }
     .dev-form-item.expanded .arrow-icon { transform: rotate(90deg); }
+
+    /* --- Home Page UI Enhancements (Premium Design) --- */
+    .existing-projects-section .project-column {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .existing-projects-section .project.card {
+        border: 1px solid rgba(0,0,0,0.05) !important;
+        border-radius: 20px !important;
+        background: #ffffff !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04) !important;
+        transition: all 0.3s ease !important;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px !important;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .existing-projects-section .project.card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 4px;
+        background: transparent;
+        transition: background 0.3s ease;
+    }
+
+    .existing-projects-section .project.card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
+        border-color: rgba(56, 189, 248, 0.2) !important;
+    }
+
+    .existing-projects-section .project.card:hover::after {
+        background: var(--dev-accent);
+    }
+
+    .existing-projects-section .project-title {
+        white-space: normal !important;
+        word-break: break-word !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        line-height: 1.25 !important;
+        font-weight: 800 !important;
+        color: #0f172a !important;
+        font-size: 1.15rem !important;
+        margin-bottom: 0.75rem !important;
+        display: block !important;
+    }
+
+    .existing-projects-section .project-description {
+        font-size: 0.9rem !important;
+        color: #64748b !important;
+        margin-bottom: 1.25rem !important;
+        line-height: 1.6 !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.8em;
+    }
+
+    .existing-projects-section .badge-project {
+        padding: 6px 12px !important;
+        border-radius: 8px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        font-size: 10px !important;
+        letter-spacing: 0.05em;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .existing-projects-section .badge-project.enterprise {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    }
+
+    .existing-projects-section .project-update {
+        font-size: 11px !important;
+        color: #94a3b8 !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    .existing-projects-section .project-plan-badge {
+        position: absolute !important;
+        top: 20px;
+        right: 20px;
+        background: rgba(16, 185, 129, 0.1) !important;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50% !important;
+        border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    }
+
+    .compact-view .project-column {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .compact-view .project.card {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 8px 24px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+        box-shadow: none !important;
+        height: auto !important;
+        min-height: 44px !important;
+    }
+
+    .compact-view .project.card::after { display: none !important; }
+
+    .compact-view .project.card:hover {
+        transform: none !important;
+        background: #f1f5f9 !important;
+        box-shadow: inset 4px 0 0 var(--dev-accent) !important;
+    }
+
+    .compact-view .project-info-details {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        flex-grow: 1;
+        gap: 16px;
+    }
+
+    .compact-view .project-title {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        margin: 0 !important;
+        width: auto !important;
+        max-width: 60% !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Full name support when not in compact mode or hovered */
+    .existing-projects-section .project-title {
+        white-space: normal !important;
+        word-break: break-word !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+    }
+
+    .compact-view .project-description {
+        display: none !important;
+    }
+
+    .compact-view .badge-project {
+        padding: 2px 8px !important;
+        font-size: 9px !important;
+        border-radius: 4px !important;
+        margin: 0 !important;
+    }
+
+    .compact-view .project-plan-badge {
+        position: static !important;
+        width: 24px !important;
+        height: 24px !important;
+        margin: 0 !important;
+        font-size: 10px !important;
+    }
+
+    .compact-view .project-update {
+        font-size: 11px !important;
+        margin-left: auto;
+        color: #94a3b8 !important;
+    }
+
+    .compact-view .row:last-child {
+        margin: 0 !important;
+        width: auto !important;
+    }
   `;
 
 
@@ -428,12 +613,29 @@
         const titleText = Utils.getComponentTitle(comp);
         const type = Utils.getComponentType(comp);
 
-        // Update existing injected header text if key/type changed
-        const existingInjected = comp.querySelector('.formio-injected-header');
-        if (existingInjected && existingInjected.innerText !== titleText) {
-          existingInjected.innerText = titleText;
+        // 1. Check for existing injected header (inside or sibling for columns)
+        let injected = comp.querySelector('.formio-injected-header');
+        if (!injected && type === 'column') {
+          const prev = comp.previousElementSibling;
+          if (prev?.classList.contains('formio-injected-header')) injected = prev;
         }
 
+        if (injected) {
+          if (injected.innerText !== titleText) injected.innerText = titleText;
+          return; // Already has an injected header, stop here
+        }
+
+        // 2. Check for existing native header
+        const native = Utils.getOwnHeader(comp, false);
+        if (native) return;
+
+        // 3. For columns, check for existing label sibling (native-like)
+        if (type === 'column') {
+          const prev = comp.previousElementSibling;
+          if (prev?.tagName === 'LABEL') return;
+        }
+
+        // 4. No header found, inject one
         const fs = comp.querySelector('fieldset');
         if (fs && !fs.querySelector('legend')) {
           const leg = document.createElement('legend');
@@ -441,12 +643,7 @@
           leg.className = 'formio-injected-header';
           leg.innerText = titleText;
           fs.prepend(leg);
-        } else if (!Utils.getOwnHeader(comp, false)) {
-          // Columns/Wells: don't inject if already labeled (sibling or direct)
-          const prev = comp.previousElementSibling;
-          if (prev?.classList.contains('formio-injected-header')) return;
-          if (type === 'column' && prev?.tagName === 'LABEL') return;
-
+        } else {
           const lab = document.createElement('label');
           lab.setAttribute('ref', 'label');
           lab.className = 'formio-injected-header col-form-label';
@@ -489,7 +686,7 @@
         while (p && p !== designer) { if (p.matches(CONFIG.selectors.foldable)) depth++; p = p.parentElement; }
 
         return `
-          <div class="map-item ${comp.classList.contains('formio-folded') ? 'folded' : ''}" 
+          <div class="map-item ${comp.classList.contains('formio-folded') ? 'folded' : ''}"
                data-target-id="${comp.id}" style="padding-left: ${16 + (depth * 15)}px !important">
             <span class="flex-grow-1 text-truncate">${Utils.escape(title)}</span>
             <span class="ms-2 opacity-50" style="font-size: 9px; text-transform: uppercase;">${type}</span>
@@ -692,6 +889,98 @@
     }
   };
 
+  // --- Feature 6: Home Page Layout ---
+  const HomePageFeature = {
+    run() {
+      // Find the main projects area - more resilient than specific classes
+      const projectCols = document.querySelectorAll('.project-column');
+      if (projectCols.length === 0) return;
+
+      const section = projectCols[0].closest('.row')?.parentElement;
+      const container = document.querySelector('.container-fluid.projects') || projectCols[0].closest('[class*="col-"]');
+      if (!container) return;
+
+      this.ensureToggle(container, projectCols.length > 50);
+      this.fixProjectNames(container);
+    },
+
+    fixProjectNames(container) {
+      const projectCols = container.querySelectorAll('.project-column');
+      projectCols.forEach(col => {
+        try {
+          const titleEl = col.querySelector('.project-title');
+          if (!titleEl) return;
+
+          const scope = angular.element(col).scope();
+          const fullTitle = scope?.project?.title;
+
+          if (fullTitle) {
+            // Check if we've already handled this title
+            let fullDisplay = col.querySelector('.formio-full-title');
+
+            if (fullDisplay) {
+              // Update if changed
+              if (fullDisplay.innerText !== fullTitle) {
+                fullDisplay.innerText = fullTitle;
+                fullDisplay.title = fullTitle;
+              }
+              // Ensure original is still hidden (Angular might re-show it)
+              if (titleEl.style.display !== 'none') titleEl.style.display = 'none';
+            } else if (titleEl.innerText.includes('…') || titleEl.innerText !== fullTitle) {
+              // Create a clone/replacement that Angular doesn't control
+              fullDisplay = document.createElement(titleEl.tagName);
+              fullDisplay.className = titleEl.className + ' formio-full-title';
+              fullDisplay.classList.remove('ng-binding'); // Remove Angular binding class
+              fullDisplay.innerText = fullTitle;
+              fullDisplay.title = fullTitle;
+
+              // Copy over any necessary styles but ensure it's visible
+              fullDisplay.style.display = 'block';
+
+              // Hide the original Angular-bound element
+              titleEl.style.display = 'none';
+
+              // Insert our clean version
+              titleEl.parentNode.insertBefore(fullDisplay, titleEl.nextSibling);
+            }
+          }
+        } catch (e) { }
+      });
+    },
+
+    ensureToggle(container, autoCompact) {
+      if (document.getElementById('compact-view-toggle')) return;
+
+      const actionsCol = document.querySelector('.home-page-actions-col-left');
+      if (!actionsCol || !actionsCol.parentElement) return;
+
+      const toggleWrap = document.createElement('div');
+      toggleWrap.className = 'col-md-4 d-flex justify-content-end align-items-center mb-3 mb-md-0';
+      toggleWrap.innerHTML = `
+        <div class="custom-control custom-switch" style="padding-left: 2.5rem; background: rgba(255,255,255,0.5); padding: 8px 16px 8px 3rem; border-radius: 10px; border: 1px solid rgba(0,0,0,0.05);">
+          <input type="checkbox" class="custom-control-input" id="compact-view-toggle">
+          <label class="custom-control-label" for="compact-view-toggle" style="cursor:pointer; font-weight:700; color: #334155; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.025em;">Compact Layout</label>
+        </div>
+      `;
+
+      actionsCol.parentElement.appendChild(toggleWrap);
+      const input = toggleWrap.querySelector('input');
+
+      // Initialize state from storage or auto-detection
+      const stored = localStorage.getItem('formio-compact-view');
+      if (stored === 'true' || (stored === null && autoCompact)) {
+        input.checked = true;
+        container.classList.add('compact-view');
+      }
+
+      input.onchange = (e) => {
+        const checked = e.target.checked;
+        container.classList.toggle('compact-view', checked);
+        localStorage.setItem('formio-compact-view', checked);
+      };
+    }
+  };
+
   // --- Main Execution ---
   loadDependencies(() => {
     FoldableFeature.init();
@@ -709,6 +998,8 @@
       FormMapFeature.updateMap();
       // 4. Dev Portal
       FormDevPortalFeature.update();
+      // 5. Home Page Layout
+      HomePageFeature.run();
     }, 500);
 
     // Initial run
@@ -730,7 +1021,7 @@
       attributeFilter: ['class', 'style']
     });
 
-    // Fallback interval for pure data changes (window.Formio.forms) which 
+    // Fallback interval for pure data changes (window.Formio.forms) which
     // might not trigger DOM mutations immediately
     setInterval(FormDevPortalFeature.update.bind(FormDevPortalFeature), 5000);
   });
