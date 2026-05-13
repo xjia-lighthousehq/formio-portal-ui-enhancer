@@ -35,10 +35,17 @@ Replaces the basic textareas in Form.io settings with the powerful ACE Editor.
 - **Prettify Feature**: One-button formatting for messy code blocks.
 - **Large Workspace**: Provides a much larger, scrollable area for writing complex logic or templates.
 
+### 🏠 Home Page Enhancements
+Elevate your project management experience with a modernized landing page.
+- **Premium Design**: Revamped project cards with vibrant shadows, interactive hover states, and a cleaner information hierarchy.
+- **Full Project Titles**: Automatically identifies and displays truncated project names, ensuring full visibility without needing to hover.
+- **Compact Layout Toggle**: A dedicated switch to transition between rich cards and a high-density list view—ideal for managing large numbers of projects.
+- **Persistent View State**: Remembers your preferred layout (Rich vs. Compact) across sessions.
+
 ### ✨ UI Refinements
-- **Flattened Navigation**: Moves hidden menu items (API, Revisions, Logs, Settings) from the dropdown to the top-level navigation for faster access.
-- **Dynamic Title Fetching**: Automatically resolves form IDs into human-readable titles in the header.
-- **Clean Layout**: Fixes common layout bugs in the Form.io portal to maximize screen real estate.
+- **Flattened Navigation**: Moves buried menu items (API, Revisions, Logs, Settings) from the dropdown to the top-level navigation for instant access.
+- **Dynamic Title Fetching**: Automatically resolves cryptic form IDs into human-readable titles in the header.
+- **Layout Fixes**: Corrects common overflow and alignment bugs within the Form.io portal to maximize workspace efficiency.
 
 ## 🛠️ Installation
 
